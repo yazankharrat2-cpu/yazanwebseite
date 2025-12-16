@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yazans Website</title>
+
+  <style>
+    /* Hintergrund-Slideshow */
+    .bg{
+      position: fixed;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      animation: fade 64s infinite;
+      z-index: -1;
+    }
+
+    /* Bilder (Endungen exakt wie im Ordner) */
+    .bg1  { background-image: url("/static/bilder/n1.jpeg");  animation-delay: 0s;  }
+    .bg2  { background-image: url("/static/bilder/n2.jpeg");  animation-delay: 4s;  }
+    .bg3  { background-image: url("/static/bilder/n3.jpeg");  animation-delay: 8s;  }
+    .bg4  { background-image: url("/static/bilder/n4.jpeg");  animation-delay: 12s; }
+    .bg5  { background-image: url("/static/bilder/n5.jpeg");  animation-delay: 16s; }
+    .bg6  { background-image: url("/static/bilder/n6.jpeg");  animation-delay: 20s; }
+    .bg7  { background-image: url("/static/bilder/n7.jpeg");  animation-delay: 24s; }
+
+    .bg8  { background-image: url("/static/bilder/n9.JPG");   animation-delay: 28s; }
+    .bg9  { background-image: url("/static/bilder/n10.JPG");  animation-delay: 32s; }
+    .bg10 { background-image: url("/static/bilder/n11.JPG");  animation-delay: 36s; }
+    .bg11 { background-image: url("/static/bilder/n12.JPG");  animation-delay: 40s; }
+    .bg12 { background-image: url("/static/bilder/n14.JPG");  animation-delay: 44s; }
+    .bg13 { background-image: url("/static/bilder/n15.JPG");  animation-delay: 48s; }
+    .bg14 { background-image: url("/static/bilder/n16.JPG");  animation-delay: 52s; }
+    .bg15 { background-image: url("/static/bilder/n17.JPG");  animation-delay: 56s; }
+
+    @keyframes fade{
+      0%   { opacity: 0; }
+      8%   { opacity: 1; }
+      20%  { opacity: 1; }
+      28%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Textbox unten links */
+    .box{
+      position: fixed;
+      left: 40px;
+      bottom: 40px;
+      z-index: 10;
+
+      background: rgba(255,255,255,0.80);
+      padding: 22px;
+      border-radius: 14px;
+      max-width: 560px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      font-family: Arial, sans-serif;
+      backdrop-filter: blur(4px);
+    }
+    .box h1{ margin:0 0 8px 0; font-size: 42px; }
+    .box p{ margin:6px 0; font-size: 16px; }
+
+    /* Spotify Button */
+    .music-btn{
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: none;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Spotify Player Container */
+    #spotifyPlayer iframe{
+      position: fixed;
+      right: 20px;
+      bottom: 80px;
+      width: 320px;
+      height: 152px;
+      border: 0;
+      border-radius: 12px;
+      z-index: 20;
+    }
+
+    /* Handy-Optimierung */
+    @media (max-width: 768px){
+      .box{
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        max-width: calc(100% - 40px);
+      }
+      #spotifyPlayer iframe{
+        width: calc(100% - 40px);
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hintergrundbilder -->
+  <div class="bg bg1"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
+  <div class="bg bg4"></div>
+  <div class="bg bg5"></div>
+  <div class="bg bg6"></div>
+  <div class="bg bg7"></div>
+  <div class="bg bg8"></div>
+  <div class="bg bg9"></div>
+  <div class="bg bg10"></div>
+  <div class="bg bg11"></div>
+  <div class="bg bg12"></div>
+  <div class="bg bg13"></div>
+  <div class="bg bg14"></div>
+  <div class="bg bg15"></div>
+
+  <!-- Textbox -->
+  <div class="box">
+    <h1>Moooin Moooin </h1>
+    <p>Spanien Reise 20/05/2025 — Yazan & Qusay</p>
+    <p>Barcelona & Palma de Mallorca</p>
+  </div>
+
+  <!-- Spotify -->
+  <button id="playMusic" class="music-btn">▶ Musik starten</button>
+  <div id="spotifyPlayer"></div>
+
+  <script>
+    // Dein Song:
+    const trackId = "6ADGPL0l00u9jjljylhBem";
+
+    document.getElementById("playMusic").addEventListener("click", () => {
+      document.getElementById("spotifyPlayer").innerHTML = `
+        <iframe
+          src="https://open.spotify.com/embed/track/${trackId}?autoplay=1"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      `;
+      document.getElementById("playMusic").remove();
+    });
+  </script>
+</body>
+</html>
